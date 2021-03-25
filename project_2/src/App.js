@@ -1,7 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
+
+  useEffect(() => {
+    const symbolURL = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=apple&apikey=${process.env.REACT_APP_ALPHA_VANTAGE_API_KEY}`
+    axios.get(symbolURL).then(res => {
+      const result = res.data.bestMatches[1].["1. symbol"] // AAPL
+      console.log(result);
+    })
+  }, [])
+
+
   return (
     <div className="App">
       <header className="App-header">
