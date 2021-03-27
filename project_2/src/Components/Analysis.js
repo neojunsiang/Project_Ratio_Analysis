@@ -1,9 +1,11 @@
 import React from "react";
 
-const Analysis = () => {
+const Analysis = (props) => {
     return (
         <>
             <h1 id="analysis">Ratio Analysis</h1>
+
+
         </>
     )
 }

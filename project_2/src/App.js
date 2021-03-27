@@ -1,21 +1,23 @@
-import { useEffect } from "react";
-import axios from "axios";
 import { Route, BrowserRouter as Router, Switch, Redirect } from "react-router-dom"
 import Knowledge from "./Components/Knowledge"
 import Analysis from './Components/Analysis';
 import SearchPage from './Components/SearchPage';
 import NavBar from "./Components/NavBar";
+import { useState } from "react";
 
 function App() {
+  const [analysis, setAnalysis] = useState([]);
 
-  // useEffect(() => {
-  //   const symbolURL = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=apple&apikey=${process.env.REACT_APP_ALPHA_VANTAGE_API_KEY}`
-  //   axios.get(symbolURL).then(res => {
-  //     const result = res.data.bestMatches[1].["1. symbol"] // AAPL
-  //     console.log(result);
-  //   })
-  // }, [])
-
+  const handleClick = (event) => {
+    // console.log("clicked");
+    const clickedName = (event.target.innerText).split(", ");
+    // console.log("clickedName", clickedName);
+    setAnalysis([...analysis, {
+      name: clickedName[0],
+      ticker: clickedName[1]
+    }])
+  }
+  // console.log("analysis", analysis);
 
   return (
     <>
@@ -23,10 +25,10 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/">
-            <SearchPage />
+            <SearchPage onClick={handleClick} analysis={analysis} />
           </Route>
           <Route path="/analysis">
-            <Analysis />
+            <Analysis result={analysis} />
           </Route>
           <Route path="/knowledge" >
             <Knowledge />
