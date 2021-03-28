@@ -17,7 +17,7 @@ function App() {
       ticker: clickedName[1]
     }])
   }
-  // console.log("analysis", analysis);
+  console.log("analysis", analysis);
 
   return (
     <>
@@ -27,12 +27,15 @@ function App() {
           <Route exact path="/">
             <SearchPage onClick={handleClick} analysis={analysis} />
           </Route>
+
           <Route path="/analysis">
             <Analysis result={analysis} />
           </Route>
+
           <Route path="/knowledge" >
             <Knowledge />
           </Route>
+
           <Redirect to="/" />
         </Switch>
       </Router>
