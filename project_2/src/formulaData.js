@@ -25,19 +25,19 @@ const data = [
     },
     {
         id: 5,
-        ratio: "Price-Per-Earning Ratio (P/E) ",
-        description: "Share price / Earnings per share",
-        formula: "Compares a company’s share price to its Earnings per Share. It reflects investors' assessments of the company's future earnings"
+        ratio: "Price-Per-Earning Ratio (P/E)",
+        description: "Compares a company’s share price to its Earnings per Share. It reflects investors' assessments of the company's future earnings",
+        formula: "Share price / Earnings per share"
     },
     {
         id: 6,
-        ratio: "Price-to-Book Ratio",
+        ratio: "Price-to-Book Ratio (P/B)",
         description: "Measures the market's valuation of a company relative to its book value, often used together with Return on Equity (ROE)",
         formula: "Market Price per Share / Book Value Per Share "
     },
     {
         id: 7,
-        ratio: "Price/Earnings-to-Growth Ratio",
+        ratio: "Price/Earnings-to-Growth Ratio (PEG)",
         description: "Enhances the P/E ratio by adding in expected earnings growth into the calculation, thus, reflecting a better indicator of a stock's true value",
         formula: "P/E Ratio / EPS Growth"
     },
