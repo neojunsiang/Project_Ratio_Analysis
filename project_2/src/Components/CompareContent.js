@@ -2,15 +2,14 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const CompareContent = (props) => {
-
     const [overview, setOverview] = useState([]);
 
-    const apiKey = process.env.REACT_APP_ALPHA_VANTAGE_API_KEY;
 
     useEffect(() => {
         if (props.result === null) {
             return null;
         } else {
+            const apiKey = process.env.REACT_APP_ALPHA_VANTAGE_API_KEY;
             const overviewURL = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${props.result}&apikey=${apiKey}`
             axios.get(overviewURL).then(res => {
                 console.log("overview res-data", res.data);
@@ -22,8 +21,7 @@ const CompareContent = (props) => {
 
     return (
         <>
-
-            <td style={{ border: "2px solid black", wordWrap: "break-word" }}>{overview.Name}</td>
+            <td>{overview.Name}</td>
             <td>{overview.Symbol}</td>
             <td>{overview.Country}</td>
             <td>{overview.Exchange}</td>
@@ -37,71 +35,6 @@ const CompareContent = (props) => {
             <td>{overview.PriceToBookRatio}</td>
             <td>{overview.PEGRatio}</td>
             <td>{overview.ReturnOnEquityTTM}</td>
-
-
-
-
-
-
-
-
-            {/* <table>
-                    <th>
-                        <h3>Name: {overview.Name}</h3>
-                        <p>Symbol: {overview.Symbol}</p>
-                    </th>
-                    <tr><h2>General Data</h2></tr>
-                    <tr>
-                        <th>Country</th>
-                        <td>{overview.Country}</td>
-                    </tr>
-                    <tr>
-                        <th>Exchange</th>
-                        <td>{overview.Exchange}</td>
-                    </tr>
-                    <tr>
-                        <th>Currency</th>
-                        <td>{overview.Currency}</td>
-                    </tr>
-                    <tr>
-                        <th>Industry</th>
-                        <td>{overview.Industry}</td>
-                    </tr>
-                    <tr><h2>Market Data</h2></tr>
-                    <tr>
-                        <th>Market Capitalisation</th>
-                        <td>${(parseInt(overview.MarketCapitalization)).toLocaleString()}</td>
-                    </tr>
-                    <tr>
-                        <th>52 Week High:</th>
-                        <td>${parseInt(overview["52WeekHigh"])}</td>
-                    </tr>
-                    <tr>
-                        <th>52 Week Low:</th>
-                        <td>${parseInt(overview["52WeekLow"])}</td>
-                    </tr>
-                    <tr><h2>Key Ratios</h2></tr>
-                    <tr>
-                        <th>Earnings Per Share:</th>
-                        <td>{overview.EPS}</td>
-                    </tr>
-                    <tr>
-                        <th>Price-per-Earnings (P/E) Ratio:</th>
-                        <td>{overview.PERatio}</td>
-                    </tr>
-                    <tr>
-                        <th>Price-to-Book Ratio:</th>
-                        <td>{overview.PriceToBookRatio}</td>
-                    </tr>
-                    <tr>
-                        <th>Price/Earnings-to-Growth Ratio (PEG):</th>
-                        <td>{overview.PEGRatio}</td>
-                    </tr>
-                    <tr>
-                        <th>Return of Equity (ROE)</th>
-                        <td>{overview.ReturnOnEquityTTM}</td>
-                    </tr>
-                </table> */}
         </>
     )
 

@@ -4,6 +4,7 @@ import Analysis from './Components/Analysis';
 import SearchPage from './Components/SearchPage';
 import NavBar from "./Components/NavBar";
 import { useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [analysis, setAnalysis] = useState([]);
@@ -15,7 +16,7 @@ function App() {
       ticker: clickedName[1]
     }])
   }
-  console.log("analysis", analysis);
+  // console.log("analysis", analysis);
 
   return (
     <>

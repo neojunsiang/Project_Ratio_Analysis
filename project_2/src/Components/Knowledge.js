@@ -14,7 +14,6 @@ const Knowledge = () => {
                 formula={ele.formula}
             />
         )
-
     })
 
     return (

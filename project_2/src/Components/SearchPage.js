@@ -1,5 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react"
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
+
+
+
 import SearchResult from "./SearchResult";
 
 const SearchPage = (props) => {
@@ -40,12 +46,18 @@ const SearchPage = (props) => {
 
     return (
         <>
-            <h1 id="searchpage">Search Stocks</h1>
-            <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="search a stock" name="company" />
-                <input type="submit" />
-            </form>
-            <div className="result">
+            <br />
+            <h1 id="searchpage" style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}> 📈 Search to Stonk 🚀 </h1>
+            <Form onSubmit={handleSubmit} style={{ display: "flex", justifyContent: "center" }}>
+                <Form.Row controlid="searchstock">
+                    <Col xs="auto">
+                        <Form.Control type="input" placeholder="What's your stonk?" name="company" />
+                    </Col>
+                    <Button variant="primary" type="submit">Submit</Button>
+                </Form.Row>
+            </Form>
+            <br />
+            <div className="result" style={{ display: "flex", justifyContent: "center" }}>
                 {name.length > 0 ?
                     (<ul>
                         {name.map((ele, index) => (
