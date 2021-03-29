@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 const CompareContent = (props) => {
     const [overview, setOverview] = useState([]);
 
-
     useEffect(() => {
         if (props.result === null) {
             return null;
@@ -12,7 +11,6 @@ const CompareContent = (props) => {
             const apiKey = process.env.REACT_APP_ALPHA_VANTAGE_API_KEY;
             const overviewURL = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${props.result}&apikey=${apiKey}`
             axios.get(overviewURL).then(res => {
-                console.log("overview res-data", res.data);
                 const overviewData = res.data;
                 setOverview(overviewData);
             })
@@ -21,23 +19,22 @@ const CompareContent = (props) => {
 
     return (
         <>
-            <td>{overview.Name}</td>
-            <td>{overview.Symbol}</td>
-            <td>{overview.Country}</td>
-            <td>{overview.Exchange}</td>
-            <td>{overview.Currency}</td>
-            <td>{overview.Industry}</td>
-            <td>${(parseInt(overview.MarketCapitalization)).toLocaleString()}</td>
-            <td>${parseInt(overview["52WeekHigh"])}</td>
-            <td>${parseInt(overview["52WeekLow"])}</td>
-            <td>{overview.EPS}</td>
-            <td>{overview.PERatio}</td>
-            <td>{overview.PriceToBookRatio}</td>
-            <td>{overview.PEGRatio}</td>
-            <td>{overview.ReturnOnEquityTTM}</td>
+            <td>{(overview.Name === undefined) ? "-" : overview.Name}</td>
+            <td>{(overview.Symbol === undefined) ? "-" : overview.Symbol}</td>
+            <td>{(overview.Country === undefined) ? "-" : overview.Country}</td>
+            <td>{(overview.Exchange === undefined) ? "-" : overview.Exchange}</td>
+            <td>{(overview.Currency === undefined) ? "-" : overview.Currency}</td>
+            <td>{(overview.Industry === undefined) ? "-" : overview.Industry}</td>
+            <td>{isNaN(overview.MarketCapitalization) ? "-" : ("$" + (parseInt(overview.MarketCapitalization)).toLocaleString())}</td>
+            <td>{isNaN(overview["52WeekHigh"]) ? "-" : ("$" + parseInt(overview["52WeekHigh"]))}</td>
+            <td>{isNaN(overview["52WeekLow"]) ? "-" : ("$" + parseInt(overview["52WeekLow"]))}</td>
+            <td>{(overview.EPS === undefined) ? "-" : overview.EPS}</td>
+            <td>{(overview.PERatio === undefined) ? "-" : overview.PERatio}</td>
+            <td>{(overview.PriceToBookRatio === undefined) ? "-" : overview.PriceToBookRatio}</td>
+            <td>{(overview.PEGRatio === undefined) ? "-" : overview.PEGRatio}</td>
+            <td>{(overview.ReturnOnEquityTTM === undefined) ? "-" : overview.ReturnOnEquityTTM}</td>
         </>
     )
-
 }
 
 export default CompareContent;

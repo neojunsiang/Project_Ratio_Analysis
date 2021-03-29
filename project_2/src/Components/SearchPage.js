@@ -3,9 +3,6 @@ import React, { useEffect, useState } from "react"
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
-
-
-
 import SearchResult from "./SearchResult";
 
 const SearchPage = (props) => {
@@ -38,9 +35,9 @@ const SearchPage = (props) => {
 
     const analysisResult = props.analysis.map((result, index) => {
         return (
-            <ul key={index}>
+            <ul key={index} style={{ display: "flex", justifyContent: "center" }}>
                 <li>{result.ticker}</li>
-            </ul>
+            </ul >
         )
     })
 
@@ -68,7 +65,7 @@ const SearchPage = (props) => {
             </div>
             <hr />
             <div className="analysisarray">
-                <h2>Analysis Result</h2>
+                <h2 style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}>Analysis Result</h2>
                 {analysisResult}
             </div>
         </>

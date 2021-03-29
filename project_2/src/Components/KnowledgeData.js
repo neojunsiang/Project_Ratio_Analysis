@@ -5,13 +5,11 @@ const KnowledgeData = (props) => {
         <>
             <div className="knowledgedata" >
                 <div id="ratios">
-                    <h3>{props.ratio}</h3>
-                    <p>{props.description}</p>
+                    <p><b>{props.ratio}</b></p>
+                    <p>Definition: {props.description}</p>
+                    <p><b>Formula: {props.formula}</b></p>
+                    <hr />
                 </div>
-                <div id="ratio_formula" >
-                    <h3>{props.formula}</h3>
-                </div>
-                <hr />
             </div>
         </>
     )

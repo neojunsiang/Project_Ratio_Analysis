@@ -18,8 +18,8 @@ const Knowledge = () => {
 
     return (
         <>
-            <h1>Knowledge</h1>
-            <h2 className="knowledge">Formulas</h2>
+            <br />
+            <h1 style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}>Knowledge</h1>
             {dataInfo}
         </>
     )

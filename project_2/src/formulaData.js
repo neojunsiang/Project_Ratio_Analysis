@@ -21,7 +21,7 @@ const data = [
         id: 4,
         ratio: "Earning-Per-Share Ratio (EPS)",
         description: "Measures the amount of net income earned for each oustanding share",
-        formula: "Net earnings / Total shares outstanding"
+        formula: "Net Earnings / Total Shares Outstanding"
     },
     {
         id: 5,
