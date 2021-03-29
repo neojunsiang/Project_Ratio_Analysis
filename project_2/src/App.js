@@ -9,9 +9,7 @@ function App() {
   const [analysis, setAnalysis] = useState([]);
 
   const handleClick = (event) => {
-    // console.log("clicked");
     const clickedName = (event.target.innerText).split(", ");
-    // console.log("clickedName", clickedName);
     setAnalysis([...analysis, {
       name: clickedName[0],
       ticker: clickedName[1]

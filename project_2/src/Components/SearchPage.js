@@ -14,7 +14,6 @@ const SearchPage = (props) => {
             const tickerURL = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${search}&apikey=${apiKey}`
             axios.get(tickerURL).then(res => {
                 const result = res.data.bestMatches;
-                // console.log("result", result);
                 if (result.length > 0) {
                     setName(result);
                 } else {
@@ -65,26 +64,3 @@ const SearchPage = (props) => {
 }
 
 export default SearchPage;
-
-
-    // const returnList = sample.bestMatches.map((ele, index) => { // to be changed to name
-    //     return (
-    //         <SearchResult
-    //             key={index}
-    //             name={ele["2. name"]}
-    //             symbol={ele["1. symbol"]}
-    //         />
-    //     )
-    // })
-
-    // const handleClick = (event) => {
-    //     // console.log("clicked")
-    //     const clickedName = event.target.innerText;
-    //     console.log("clickedName", clickedName);
-    //     setAnalysis([...analysis, { name: clickedName }]);
-    // }
-
-    // console.log("analysis", analysis)
-
-    // const [analysis, setAnalysis] = useState([]);
-
