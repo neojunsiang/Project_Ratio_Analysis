@@ -17,7 +17,7 @@ const Knowledge = () => {
     return (
         <>
             <br />
-            <h1 style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}>Knowledge</h1>
+            <h1 style={{ display: "flex", justifyContent: "center", fontSize: "30px", fontFamily: "recursive" }}>Knowledge</h1>
             {dataInfo}
         </>
     )

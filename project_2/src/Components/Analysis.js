@@ -6,7 +6,8 @@ const Analysis = (props) => {
     return (
         <>
             <br />
-            <h1 id="analysis" style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}>Analysis</h1>
+            <h1 id="analysis" style={{ display: "flex", justifyContent: "center", fontSize: "30px", fontFamily: "recursive" }}>Analysis</h1>
+            <br />
             <Table striped bordered>
                 <thead>
                     <tr>

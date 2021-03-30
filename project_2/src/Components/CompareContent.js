@@ -8,12 +8,12 @@ const CompareContent = (props) => {
         if (props.result === null) {
             return null;
         } else {
-            const apiKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3]
-            const singleAPIkey = apiKeys[Math.round(Math.random() * (apiKeys.length))];
+            const multipleAPIKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3]
+            const singleAPIkey = multipleAPIKeys[Math.round(Math.random() * (multipleAPIKeys.length))];
             const overviewURL = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${props.result}&apikey=${singleAPIkey}`
             axios.get(overviewURL).then(res => {
                 const overviewData = res.data;
-                console.log("overview", overviewData)
+                console.log("overview", overviewData);
                 setOverview(overviewData);
             })
         }
@@ -32,10 +32,10 @@ const CompareContent = (props) => {
                 <td>{isNaN(overview["52WeekHigh"]) ? "-" : ("$" + parseFloat(overview["52WeekHigh"]).toFixed(2))}</td>
                 <td>{isNaN(overview["52WeekLow"]) ? "-" : ("$" + parseFloat(overview["52WeekLow"]).toFixed(2))}</td>
                 <td>{(overview.EPS === undefined) ? "-" : overview.EPS}</td>
-                <td>{(overview.PERatio === undefined) ? "-" : parseFloat(overview.PERatio).toFixed(2)}</td>
-                <td>{(overview.PriceToBookRatio === undefined) ? "-" : parseFloat(overview.PriceToBookRatio).toFixed(2)}</td>
-                <td>{(overview.PEGRatio === undefined) ? "-" : parseFloat(overview.PEGRatio).toFixed(2)}</td>
-                <td>{(overview.ReturnOnEquityTTM === undefined) ? "-" : parseFloat(overview.ReturnOnEquityTTM).toFixed(2)}</td>
+                <td>{(overview.PERatio === undefined || overview.PERatio === "None") ? "-" : parseFloat(overview.PERatio).toFixed(2)}</td>
+                <td>{(overview.PriceToBookRatio === undefined || overview.PriceToBookRatio === "None") ? "-" : parseFloat(overview.PriceToBookRatio).toFixed(2)}</td>
+                <td>{(overview.PEGRatio === undefined || overview.PEGRatio === "None") ? "-" : parseFloat(overview.PEGRatio).toFixed(2)}</td>
+                <td>{(overview.ReturnOnEquityTTM === undefined || overview.ReturnOnEquityTTM === "None") ? "-" : parseFloat(overview.ReturnOnEquityTTM).toFixed(2)}</td>
             </tr>
         </>
     )

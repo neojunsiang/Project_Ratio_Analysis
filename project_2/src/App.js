@@ -5,6 +5,7 @@ import SearchPage from './Components/SearchPage';
 import NavBar from "./Components/NavBar";
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css"
 
 function App() {
   const [analysis, setAnalysis] = useState([]);

@@ -5,6 +5,8 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import SearchResult from "./SearchResult";
 import Loading from "./Loading";
+import { Container, Row } from "react-bootstrap";
+import SelectedStock from "./SelectedStock";
 
 const SearchPage = (props) => {
     const [search, setSearch] = useState("");
@@ -12,9 +14,8 @@ const SearchPage = (props) => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const apiKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3]
-        const singleAPIkey = apiKeys[Math.round(Math.random() * (apiKeys.length))];
-        console.log("singleapikey", singleAPIkey);
+        const multipleAPIKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3]
+        const singleAPIkey = multipleAPIKeys[Math.round(Math.random() * (multipleAPIKeys.length))];
 
         if (search === "") {
             return null;
@@ -39,38 +40,42 @@ const SearchPage = (props) => {
         companyName === search ? setLoading(false) : setLoading(true);
     }
 
-    const analysisResult = props.analysis.map((result, index) => {
-        return (
-            <ul key={index} style={{ display: "flex", justifyContent: "center" }}>
-                <li>{result.ticker}</li>
-            </ul >
-        )
-    })
+    // const analysisResult = props.analysis.map((result, index) => {
+    //     return (
+    //         <ul key={index} style={{ display: "flex", justifyContent: "center" }}>
+    //             <li>{result.ticker}</li>
+    //         </ul >
+    //     )
+    // })
 
     return (
         <>
             <br />
-            <h1 id="searchpage" style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}> 📈 Search to Stronk 🚀 </h1>
+            <h1 id="searchpage" style={{ display: "flex", justifyContent: "center", fontSize: "30px", fontFamily: "recursive" }}> 📈 Search to Stronk 🚀 </h1>
             <br />
-            <Form onSubmit={handleSubmit} style={{ display: "flex", justifyContent: "center" }}>
-                <Form.Row controlid="searchstock">
-                    <Col xs="auto">
-                        <Form.Control type="input" placeholder="What's your stronk?" name="company" />
+            <Container>
+                <Row>
+                    <Col>
+                        <Form onSubmit={handleSubmit} style={{ display: "flex", justifyContent: "center" }}>
+                            <Form.Row controlid="searchstock">
+                                <Col xs="auto">
+                                    <Form.Control type="input" placeholder="What's your stronk?" name="company" />
+                                </Col>
+                                <Button type="submit">🔍</Button>
+                            </Form.Row>
+                        </Form>
+                        <br />
+                        {loading ? <Loading /> : null}
+                        <br />
+                        <div className="result" style={{ display: " flex", justifyContent: "center" }}>
+                            {name.length > 0 ? <SearchResult name={name} onClick={props.onClick} /> : null}
+                        </div>
                     </Col>
-                    <Button type="submit">🔍</Button>
-                </Form.Row>
-            </Form>
-            <br />
-            {loading ? <Loading /> : null}
-            <br />
-            <div className="result" style={{ display: " flex", justifyContent: "center" }}>
-                {name.length > 0 ? <SearchResult name={name} onClick={props.onClick} /> : null}
-            </div>
-            <hr />
-            <div className="analysisarray">
-                <h2 style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}>Analysis Result</h2>
-                {analysisResult}
-            </div>
+                    <Col>
+                        <SelectedStock selected={props.analysis} />
+                    </Col>
+                </Row>
+            </Container>
         </>
     )
 }
