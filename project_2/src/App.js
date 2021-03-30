@@ -16,7 +16,6 @@ function App() {
       ticker: clickedName[1]
     }])
   }
-  // console.log("analysis", analysis);
 
   return (
     <>

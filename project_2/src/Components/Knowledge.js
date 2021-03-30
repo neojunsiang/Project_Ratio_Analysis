@@ -3,8 +3,6 @@ import KnowledgeData from "./KnowledgeData";
 
 const Knowledge = () => {
 
-    console.log(data);
-
     const dataInfo = data.map((ele) => {
         return (
             <KnowledgeData

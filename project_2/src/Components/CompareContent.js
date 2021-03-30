@@ -8,10 +8,12 @@ const CompareContent = (props) => {
         if (props.result === null) {
             return null;
         } else {
-            const apiKey = process.env.REACT_APP_ALPHA_VANTAGE_API_KEY;
-            const overviewURL = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${props.result}&apikey=${apiKey}`
+            const apiKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3]
+            const singleAPIkey = apiKeys[Math.round(Math.random() * (apiKeys.length))];
+            const overviewURL = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${props.result}&apikey=${singleAPIkey}`
             axios.get(overviewURL).then(res => {
                 const overviewData = res.data;
+                console.log("overview", overviewData)
                 setOverview(overviewData);
             })
         }
@@ -19,20 +21,22 @@ const CompareContent = (props) => {
 
     return (
         <>
-            <td>{(overview.Name === undefined) ? "-" : overview.Name}</td>
-            <td>{(overview.Symbol === undefined) ? "-" : overview.Symbol}</td>
-            <td>{(overview.Country === undefined) ? "-" : overview.Country}</td>
-            <td>{(overview.Exchange === undefined) ? "-" : overview.Exchange}</td>
-            <td>{(overview.Currency === undefined) ? "-" : overview.Currency}</td>
-            <td>{(overview.Industry === undefined) ? "-" : overview.Industry}</td>
-            <td>{isNaN(overview.MarketCapitalization) ? "-" : ("$" + (parseInt(overview.MarketCapitalization)).toLocaleString())}</td>
-            <td>{isNaN(overview["52WeekHigh"]) ? "-" : ("$" + parseInt(overview["52WeekHigh"]))}</td>
-            <td>{isNaN(overview["52WeekLow"]) ? "-" : ("$" + parseInt(overview["52WeekLow"]))}</td>
-            <td>{(overview.EPS === undefined) ? "-" : overview.EPS}</td>
-            <td>{(overview.PERatio === undefined) ? "-" : overview.PERatio}</td>
-            <td>{(overview.PriceToBookRatio === undefined) ? "-" : overview.PriceToBookRatio}</td>
-            <td>{(overview.PEGRatio === undefined) ? "-" : overview.PEGRatio}</td>
-            <td>{(overview.ReturnOnEquityTTM === undefined) ? "-" : overview.ReturnOnEquityTTM}</td>
+            <tr>
+                <td>{(overview.Name === undefined) ? "-" : overview.Name}</td>
+                <td>{(overview.Symbol === undefined) ? "-" : overview.Symbol}</td>
+                <td>{(overview.Country === undefined) ? "-" : overview.Country}</td>
+                <td>{(overview.Exchange === undefined) ? "-" : overview.Exchange}</td>
+                <td>{(overview.Currency === undefined) ? "-" : overview.Currency}</td>
+                <td>{(overview.Industry === undefined) ? "-" : overview.Industry}</td>
+                <td>{isNaN(overview.MarketCapitalization) ? "-" : ("$" + (parseFloat(overview.MarketCapitalization)).toLocaleString())}</td>
+                <td>{isNaN(overview["52WeekHigh"]) ? "-" : ("$" + parseFloat(overview["52WeekHigh"]).toFixed(2))}</td>
+                <td>{isNaN(overview["52WeekLow"]) ? "-" : ("$" + parseFloat(overview["52WeekLow"]).toFixed(2))}</td>
+                <td>{(overview.EPS === undefined) ? "-" : overview.EPS}</td>
+                <td>{(overview.PERatio === undefined) ? "-" : parseFloat(overview.PERatio).toFixed(2)}</td>
+                <td>{(overview.PriceToBookRatio === undefined) ? "-" : parseFloat(overview.PriceToBookRatio).toFixed(2)}</td>
+                <td>{(overview.PEGRatio === undefined) ? "-" : parseFloat(overview.PEGRatio).toFixed(2)}</td>
+                <td>{(overview.ReturnOnEquityTTM === undefined) ? "-" : parseFloat(overview.ReturnOnEquityTTM).toFixed(2)}</td>
+            </tr>
         </>
     )
 }

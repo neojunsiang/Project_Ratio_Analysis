@@ -4,20 +4,26 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import SearchResult from "./SearchResult";
+import Loading from "./Loading";
 
 const SearchPage = (props) => {
     const [search, setSearch] = useState("");
     const [name, setName] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const apiKey = process.env.REACT_APP_ALPHA_VANTAGE_API_KEY;
+        const apiKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3]
+        const singleAPIkey = apiKeys[Math.round(Math.random() * (apiKeys.length))];
+        console.log("singleapikey", singleAPIkey);
+
         if (search === "") {
             return null;
         } else {
-            const tickerURL = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${search}&apikey=${apiKey}`
+            const tickerURL = `https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=${search}&apikey=${singleAPIkey}`
             axios.get(tickerURL).then(res => {
                 const result = res.data.bestMatches;
                 if (result.length > 0) {
+                    setLoading(false);
                     setName(result);
                 } else {
                     setName([]);
@@ -29,8 +35,8 @@ const SearchPage = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         const companyName = event.target.company.value;
-        console.log("company name", companyName);
         setSearch(companyName);
+        companyName === search ? setLoading(false) : setLoading(true);
     }
 
     const analysisResult = props.analysis.map((result, index) => {
@@ -44,24 +50,21 @@ const SearchPage = (props) => {
     return (
         <>
             <br />
-            <h1 id="searchpage" style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}> 📈 Search to Stonk 🚀 </h1>
+            <h1 id="searchpage" style={{ display: "flex", justifyContent: "center", fontSize: "30px" }}> 📈 Search to Stronk 🚀 </h1>
+            <br />
             <Form onSubmit={handleSubmit} style={{ display: "flex", justifyContent: "center" }}>
                 <Form.Row controlid="searchstock">
                     <Col xs="auto">
-                        <Form.Control type="input" placeholder="What's your stonk?" name="company" />
+                        <Form.Control type="input" placeholder="What's your stronk?" name="company" />
                     </Col>
-                    <Button variant="primary" type="submit">Submit</Button>
+                    <Button type="submit">🔍</Button>
                 </Form.Row>
             </Form>
             <br />
-            <div className="result" style={{ display: "flex", justifyContent: "center" }}>
-                {name.length > 0 ?
-                    (<ul>
-                        {name.map((ele, index) => (
-                            <li key={index} onClick={props.onClick}>{ele["2. name"]}, {ele["1. symbol"]}</li>
-                        ))}
-                    </ul>)
-                    : null}
+            {loading ? <Loading /> : null}
+            <br />
+            <div className="result" style={{ display: " flex", justifyContent: "center" }}>
+                {name.length > 0 ? <SearchResult name={name} onClick={props.onClick} /> : null}
             </div>
             <hr />
             <div className="analysisarray">
