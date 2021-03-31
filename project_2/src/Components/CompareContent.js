@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 const CompareContent = (props) => {
     const [overview, setOverview] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => { // to generate the content and ratios for analysis page
         if (props.analysisresult === null) {
             return null;
         } else {

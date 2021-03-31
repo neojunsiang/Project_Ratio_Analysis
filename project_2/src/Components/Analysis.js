@@ -8,7 +8,7 @@ const Analysis = (props) => {
             <br />
             <h1 id="analysis" style={{ display: "flex", justifyContent: "center", fontSize: "30px", fontFamily: "recursive" }}>Analysis</h1>
             <br />
-            <Table striped bordered>
+            <Table striped bordered >
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -20,11 +20,11 @@ const Analysis = (props) => {
                         <th>Market Capitalisation</th>
                         <th>52 Week High</th>
                         <th>52 Week Low</th>
-                        <th><Link to="/knowledge">Earnings Per Share</Link></th>
-                        <th><Link to="/knowledge">Price-per-Earnings (P/E) Ratio</Link></th>
-                        <th><Link to="/knowledge">Price-to-Book Ratio</Link></th>
-                        <th><Link to="/knowledge">Price/Earnings-to-Growth Ratio (PEG)</Link></th>
-                        <th><Link to="/knowledge">Return of Equity (ROE)</Link></th>
+                        <th><a href="/knowledge/#4">Earnings Per Share</a></th>
+                        <th><a href="/knowledge/#5">Price-per-Earnings (P/E) Ratio</a></th>
+                        <th><a href="/knowledge/#6">Price-to-Book Ratio</a></th>
+                        <th><a href="/knowledge/#7">Price/Earnings-to-Growth Ratio (PEG)</a></th>
+                        <th><a href="/knowledge/#8">Return of Equity (ROE)</a></th>
                     </tr>
                 </thead>
                 <tbody>

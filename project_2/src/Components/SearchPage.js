@@ -20,10 +20,9 @@ const SearchPage = (props) => {
         companyName === searchTerm ? setLoading(false) : setLoading(true); // no spinner if searchTerm and targetValue are the same
     }
 
-    const handleClear = () => {
+    const handleClear = () => { // resetting of search result
         window.location.reload();
     }
-
 
     useEffect(() => { // fetching ticker based on searchTerm
         const multipleAPIKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_4, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_5, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_6]

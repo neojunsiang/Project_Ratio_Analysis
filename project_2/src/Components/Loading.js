@@ -1,7 +1,7 @@
 import React from "react";
 import Spinner from 'react-bootstrap/Spinner';
 
-const Loading = () => {
+const Loading = () => { // rendering of spinner upon loading
     return (
         <div style={{ display: "flex", justifyContent: "center" }}>
             <Spinner animation="border" role="status">
