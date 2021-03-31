@@ -17,7 +17,7 @@ const SearchPage = (props) => {
         event.preventDefault();
         const companyName = event.target.company.value;
         setSearchTerm(companyName);
-        companyName === searchTerm ? setLoading(false) : setLoading(true); // no spinner if searchTerm and targetValue are the same
+        companyName === searchTerm ? setLoading(false) : setLoading(true); // no spinner if searchTerm and companyName(targetValue) are the same, else spinner will appear while searching
     }
 
     const handleClear = () => { // resetting of search result
@@ -67,7 +67,6 @@ const SearchPage = (props) => {
                             {name.length > 0 ? <SearchResult name={name} onClick={props.onClick} /> : null}
                         </div>
                     </Col>
-
                     <Col className="container" style={{ justifyContent: "center" }}>
                         <Row style={{ display: "flex", justifyContent: "center", height: "38px", width: "540px" }}>
                             <p style={{ display: "flex", justifyContent: "center", fontSize: "20px", fontFamily: "recursive", marginTop: "5px" }}>Selected Stock 📊</p>

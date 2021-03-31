@@ -10,7 +10,7 @@ import "./App.css"
 function App() {
   const [analysis, setAnalysis] = useState([]);
 
-  const handleClick = (event) => { // click function for the returned result on SearchPage
+  const handleClick = (event) => { // click function for selecting stock to be analysed for the returned result on SearchPage
     const clickedName = (event.target.innerText).split(", ");
     setAnalysis([...analysis, {
       name: clickedName[0],
@@ -40,7 +40,6 @@ function App() {
           </Switch>
         </Router>
       </div>
-
     </ >
   );
 }
