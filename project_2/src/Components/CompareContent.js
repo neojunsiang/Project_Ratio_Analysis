@@ -5,19 +5,19 @@ const CompareContent = (props) => {
     const [overview, setOverview] = useState([]);
 
     useEffect(() => {
-        if (props.result === null) {
+        if (props.analysisresult === null) {
             return null;
         } else {
-            const multipleAPIKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3]
+            const multipleAPIKeys = [process.env.REACT_APP_ALPHA_VANTAGE_API_KEY, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_2, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_3, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_4, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_5, process.env.REACT_APP_ALPHA_VANTAGE_API_KEY_6]
             const singleAPIkey = multipleAPIKeys[Math.round(Math.random() * (multipleAPIKeys.length))];
-            const overviewURL = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${props.result}&apikey=${singleAPIkey}`
+            const overviewURL = `https://www.alphavantage.co/query?function=OVERVIEW&symbol=${props.analysisresult}&apikey=${singleAPIkey}`
             axios.get(overviewURL).then(res => {
                 const overviewData = res.data;
                 console.log("overview", overviewData);
                 setOverview(overviewData);
             })
         }
-    }, [props.result])
+    }, [props.analysisresult])
 
     return (
         <>

@@ -28,14 +28,14 @@ const Analysis = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.result.length > 0 ? props.result.map((ele, index) => {
+                    {props.analysisresult.length > 0 ? props.analysisresult.map((ele, index) => {
                         return (
-                            <CompareContent key={index} result={ele.ticker} />
+                            <CompareContent key={index} analysisresult={ele.ticker} />
                         )
                     }) : null}
                 </tbody>
             </Table>
-            {props.result.length < 1 ? <p style={{ display: "flex", justifyContent: "center" }}>Oops.. You did not specify your search...</p> : null}
+            {props.analysisresult.length < 1 ? <p style={{ display: "flex", justifyContent: "center" }}>Oops.. You did not specify your search...</p> : null}
             <br />
             <footer>
                 To learn more about the ratios, kindly refer to <Link to="/knowledge">Knowledge</Link>.

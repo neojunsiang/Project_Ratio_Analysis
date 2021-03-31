@@ -10,7 +10,7 @@ import "./App.css"
 function App() {
   const [analysis, setAnalysis] = useState([]);
 
-  const handleClick = (event) => {
+  const handleClick = (event) => { // click function for the returned result on SearchPage
     const clickedName = (event.target.innerText).split(", ");
     setAnalysis([...analysis, {
       name: clickedName[0],
@@ -20,24 +20,27 @@ function App() {
 
   return (
     <>
-      <Router>
-        <NavBar />
-        <Switch>
-          <Route exact path="/">
-            <SearchPage onClick={handleClick} analysis={analysis} />
-          </Route>
+      <div className="body">
+        <Router>
+          <NavBar />
+          <Switch>
+            <Route exact path="/">
+              <SearchPage onClick={handleClick} analysis={analysis} />
+            </Route>
 
-          <Route path="/analysis">
-            <Analysis result={analysis} />
-          </Route>
+            <Route path="/analysis">
+              <Analysis analysisresult={analysis} />
+            </Route>
 
-          <Route path="/knowledge" >
-            <Knowledge />
-          </Route>
+            <Route path="/knowledge" >
+              <Knowledge />
+            </Route>
 
-          <Redirect to="/" />
-        </Switch>
-      </Router>
+            <Redirect to="/" />
+          </Switch>
+        </Router>
+      </div>
+
     </ >
   );
 }

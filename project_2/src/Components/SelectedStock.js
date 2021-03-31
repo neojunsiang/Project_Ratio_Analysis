@@ -8,20 +8,19 @@ const SelectedStock = (props) => {
         padding: "3px",
         justifyContent: "center",
         textAlign: "center",
-        backgroundColor: "lightgreen"
+        backgroundColor: "rgb(152,251,152)",
     }
 
     return (
         <>
-            <h2 style={{ display: "flex", justifyContent: "center", fontSize: "25px", padding: "3px", fontFamily: "recursive" }}>Selected Stock 📊</h2>
             <br />
-            <ul >
+            <ul>
                 {props.selected.map((result, index) => {
                     return (
                         <p key={index} style={selectedStockStyle}>{result.name}, {result.ticker}</p>
                     )
                 })}
-            </ul >
+            </ul>
         </>
     )
 }
